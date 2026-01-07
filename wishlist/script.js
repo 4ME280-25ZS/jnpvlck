@@ -1,4 +1,4 @@
-var supabase = window.supabase.createClient(
+let supabase = window.supabase.createClient(
   'https://pvgdsnandhesqzmvgede.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2Z2RzbmFuZGhlc3F6bXZnZWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3ODcwNjksImV4cCI6MjA4MzM2MzA2OX0.-h6fv0n8I8q5WQlJ4asfg7j2-hf-CX98_uWxO4MJjUw'
 );
