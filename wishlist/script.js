@@ -1,5 +1,4 @@
-initializeGifts();
-render();
+// ...existing code...
 const firebaseConfig = {
   apiKey: "AIzaSyDG5bOG9_9GV-xKEVHdIQLbAuvSsSWD0rw",
   authDomain: "wishlist-f6fac.firebaseapp.com",
@@ -12,6 +11,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+initializeGifts();
+render();
 
 const DEFAULT_GIFTS = [
   { name: "Kniha" },
