@@ -36,9 +36,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
   <!-- Configure these two values with your Supabase project settings -->
   <script>
-    // Replace with your project's values from Supabase Settings → API
-    const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';
-    const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+    // Supabase project values (configured by user)
+    const SUPABASE_URL = 'https://pvgdsnandhesqzmvgede.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2Z2RzbmFuZGhlc3F6bXZnZWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3ODcwNjksImV4cCI6MjA4MzM2MzA2OX0.-h6fv0n8I8q5WQlJ4asfg7j2-hf-CX98_uWxO4MJjUw';
     if (typeof supabase !== 'undefined' && SUPABASE_URL && SUPABASE_ANON_KEY) {
       window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     } else {
