@@ -56,7 +56,7 @@ async function reserveItemDb(itemId, name){
 
 async function cancelReservationDb(itemId){
   if(!hasSupabase()){
-    const r = loadReservationsLocal(); delete r[itemId]; saveReservationsLocal(r); return { success: true };
+    const r = loadReservationsLocal(); delete r[item.id]; saveReservationsLocal(r); return { success: true };
   }
   const { data, error } = await window.supabaseClient
     .from('items')

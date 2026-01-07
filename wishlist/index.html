@@ -32,20 +32,40 @@
     </template>
   </main>
 
-  <!-- Supabase client (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
-  <!-- Configure these two values with your Supabase project settings -->
+  <!-- Load Supabase client from multiple CDNs with fallback, then initialize -->
   <script>
-    // Supabase project values (configured by user)
-    const SUPABASE_URL = 'https://pvgdsnandhesqzmvgede.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2Z2RzbmFuZGhlc3F6bXZnZWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3ODcwNjksImV4cCI6MjA4MzM2MzA2OX0.-h6fv0n8I8q5WQlJ4asfg7j2-hf-CX98_uWxO4MJjUw';
-    if (typeof supabase !== 'undefined' && SUPABASE_URL && SUPABASE_ANON_KEY) {
-      window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    } else {
-      window.supabaseClient = null;
-    }
-  </script>
+    (function(){
+      const cdns = [
+        'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js',
+        'https://unpkg.com/@supabase/supabase-js/dist/supabase.min.js'
+      ];
+      const SUPABASE_URL = 'https://pvgdsnandhesqzmvgede.supabase.co';
+      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2Z2RzbmFuZGhlc3F6bXZnZWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3ODcwNjksImV4cCI6MjA4MzM2MzA2OX0.-h6fv0n8I8q5WQlJ4asfg7j2-hf-CX98_uWxO4MJjUw';
 
-  <script src="script.js" defer></script>
+      function loadScript(src){
+        return new Promise((resolve,reject)=>{
+          const s = document.createElement('script');
+          s.src = src; s.async = false; s.onload = () => resolve(); s.onerror = () => reject();
+          document.head.appendChild(s);
+        });
+      }
+
+      (async ()=>{
+        let loaded = false;
+        for(const src of cdns){
+          try{ await loadScript(src); loaded = true; break; } catch(e){ /* try next */ }
+        }
+        if(loaded && typeof supabase !== 'undefined' && SUPABASE_URL && SUPABASE_ANON_KEY){
+          try{ window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); }
+          catch(e){ console.warn('Failed to create supabase client', e); window.supabaseClient = null; }
+        } else {
+          window.supabaseClient = null;
+          console.warn('Supabase client not available (CDN failed or keys missing)');
+        }
+        // after initialization, load the app script
+        const app = document.createElement('script'); app.src = 'script.js'; app.defer = true; document.body.appendChild(app);
+      })();
+    })();
+  </script>
 </body>
 </html>
