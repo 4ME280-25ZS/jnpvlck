@@ -1,3 +1,5 @@
+initializeGifts();
+render();
 const firebaseConfig = {
   apiKey: "AIzaSyDG5bOG9_9GV-xKEVHdIQLbAuvSsSWD0rw",
   authDomain: "wishlist-f6fac.firebaseapp.com",
