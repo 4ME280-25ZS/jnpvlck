@@ -2,6 +2,7 @@
 const firebaseConfig = {
   apiKey: "AIzaSyDG5bOG9_9GV-xKEVHdIQLbAuvSsSWD0rw",
   authDomain: "wishlist-f6fac.firebaseapp.com",
+  databaseURL: "https://wishlist-f6fac-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "wishlist-f6fac",
   storageBucket: "wishlist-f6fac.firebasestorage.app",
   messagingSenderId: "269148346232",
