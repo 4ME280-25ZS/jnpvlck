@@ -1,7 +1,14 @@
 const gifts = [
   { name: "Kniha", reservedBy: "" },
   { name: "Sluchátka", reservedBy: "" },
-  { name: "Hrnek", reservedBy: "" }
+  { name: "Hrnek", reservedBy: "" },
+  { name: "Ponožky", reservedBy: "" },
+  { name: "Puzzle", reservedBy: "" },
+  { name: "Tričko", reservedBy: "" },
+  { name: "Batoh", reservedBy: "" },
+  { name: "Lego", reservedBy: "" },
+  { name: "Peněženka", reservedBy: "" },
+  { name: "Sladkosti", reservedBy: "" }
 ];
 
 function save() {
