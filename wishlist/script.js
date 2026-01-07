@@ -5,7 +5,15 @@ const DEFAULT_ITEMS = [
   { id: 'item3', title: 'Coffee Sampler', desc: 'Selection of six single-origin coffees.' },
   { id: 'item4', title: 'Cozy Blanket', desc: 'Soft throw blanket, 130x160 cm.' },
   { id: 'item5', title: 'Desk Plant', desc: 'Low-maintenance succulent in a ceramic pot.' },
-  { id: 'item6', title: 'Gift Card', desc: 'Versatile €50 gift card for tech or books.' }
+  { id: 'item6', title: 'Gift Card', desc: 'Versatile €50 gift card for tech or books.' },
+  { id: 'item7', title: 'Wireless Headphones', desc: 'Over-ear Bluetooth headphones with long battery life.' },
+  { id: 'item8', title: 'Stainless Travel Mug', desc: 'Keeps drinks hot for hours, leak-proof.' },
+  { id: 'item9', title: 'Contemporary Cookbook', desc: 'A collection of easy, modern recipes.' },
+  { id: 'item10', title: 'Smart LED Lamp', desc: 'Dimmable lamp with color and scene presets.' },
+  { id: 'item11', title: 'Photo Frame', desc: 'Digital frame to display favorite photos.' },
+  { id: 'item12', title: 'Strategy Board Game', desc: 'Fun tabletop game for 2-6 players.' },
+  { id: 'item13', title: 'Planner Notebook', desc: 'Yearly planner with weekly layouts.' },
+  { id: 'item14', title: 'Noise-Cancelling Earbuds', desc: 'Compact earbuds with ANC.' }
 ];
 
 const STORAGE_KEY = 'wishlistReservations_v1';

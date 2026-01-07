@@ -34,7 +34,15 @@ insert into items (id, title, description) values
 ('item3','Coffee Sampler','Selection of six single-origin coffees.'),
 ('item4','Cozy Blanket','Soft throw blanket, 130x160 cm.'),
 ('item5','Desk Plant','Low-maintenance succulent in a ceramic pot.'),
-('item6','Gift Card','Versatile €50 gift card for tech or books.')
+('item6','Gift Card','Versatile €50 gift card for tech or books.'),
+('item7','Wireless Headphones','Over-ear Bluetooth headphones with long battery life.'),
+('item8','Stainless Travel Mug','Keeps drinks hot for hours, leak-proof.'),
+('item9','Contemporary Cookbook','A collection of easy, modern recipes.'),
+('item10','Smart LED Lamp','Dimmable lamp with color and scene presets.'),
+('item11','Photo Frame','Digital frame to display favorite photos.'),
+('item12','Strategy Board Game','Fun tabletop game for 2-6 players.'),
+('item13','Planner Notebook','Yearly planner with weekly layouts.'),
+('item14','Noise-Cancelling Earbuds','Compact earbuds with ANC.')
 on conflict (id) do nothing;
 ```
 
