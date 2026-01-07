@@ -3,11 +3,35 @@ const supabase = supabase.createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2Z2RzbmFuZGhlc3F6bXZnZWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3ODcwNjksImV4cCI6MjA4MzM2MzA2OX0.-h6fv0n8I8q5WQlJ4asfg7j2-hf-CX98_uWxO4MJjUw'
 );
 
+const DEFAULT_GIFTS = [
+  { name: "Kniha" },
+  { name: "Sluchátka" },
+  { name: "Hrnek" },
+  { name: "Ponožky" },
+  { name: "Puzzle" },
+  { name: "Tričko" },
+  { name: "Batoh" },
+  { name: "Lego" },
+  { name: "Peněženka" },
+  { name: "Sladkosti" }
+];
+
 async function loadGifts() {
-  const { data, error } = await supabase.from('wishlist').select();
+  let { data, error } = await supabase.from('wishlist').select();
   if (error) {
     alert('Chyba při načítání dárků!');
     return [];
+  }
+  if (!data || data.length === 0) {
+    // Tabulka je prázdná, vložíme základní předměty
+    const giftsToInsert = DEFAULT_GIFTS.map(g => ({ name: g.name, reserved_by: null }));
+    const { error: insertError } = await supabase.from('wishlist').insert(giftsToInsert);
+    if (insertError) {
+      alert('Chyba při vkládání základních dárků!');
+      return [];
+    }
+    // Znovu načteme data
+    ({ data } = await supabase.from('wishlist').select());
   }
   return data;
 }
