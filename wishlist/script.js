@@ -101,34 +101,29 @@ const DEFAULT_GIFTS = [
   { name: "Sladkosti" }
 ];
 
-async function loadGifts() {
-  let { data, error } = await supabase.from('wishlist').select();
-  if (error) {
-    alert('Chyba při načítání dárků!');
-    return [];
-  }
-  if (!data || data.length === 0) {
-    // Tabulka je prázdná, vložíme základní předměty
-    const giftsToInsert = DEFAULT_GIFTS.map(g => ({ name: g.name, reserved_by: null }));
-    const { error: insertError } = await supabase.from('wishlist').insert(giftsToInsert);
-    if (insertError) {
-      alert('Chyba při vkládání základních dárků!');
-      return [];
+
+function initializeGifts() {
+  db.ref('wishlist').once('value', snapshot => {
+    if (!snapshot.exists()) {
+      const gifts = {};
+      DEFAULT_GIFTS.forEach((g, i) => {
+        gifts[i] = { name: g.name, reservedBy: null };
+      });
+      db.ref('wishlist').set(gifts);
     }
-    // Znovu načteme data
-    ({ data } = await supabase.from('wishlist').select());
-  }
-  return data;
+  });
 }
 
-async function reserveGift(id, name) {
-  const { error } = await supabase
-    .from('wishlist')
-    .update({ reserved_by: name })
-    .eq('id', id);
-  if (error) {
-    alert('Chyba při rezervaci!');
-  }
+function loadGifts(callback) {
+  db.ref('wishlist').on('value', snapshot => {
+    const data = snapshot.val() || {};
+    const gifts = Object.entries(data).map(([id, gift]) => ({ id, ...gift }));
+    callback(gifts);
+  });
+}
+
+function reserveGift(id, name) {
+  db.ref('wishlist/' + id + '/reservedBy').set(name);
 }
 
 async function render() {
